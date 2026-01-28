@@ -22,5 +22,17 @@ $desc  = $L["$page.desc"]  ?? '';
     nav a { margin-right: 10px; text-decoration: none; }
     .lang a.active { font-weight: bold; text-decoration: underline; }
   </style>
+
+  <?php
+// Csak ha nem URL-ben van nyelv
+if (!in_array($lang, ['hu','en'])) {
+    $userLang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    $lang = $userLang === 'en' ? 'en' : 'hu';
+    header("Location: /$lang/index.php");
+    exit;
+}
+?>
 </head>
 <body>
+
+
